@@ -7,7 +7,7 @@ module 8bit_register (clock, load, enable, in, out) (
     wire [7:0] value;
     reg [7:0] data;
 
-    always @(posedge clk ) begin
+    always @(posedge clock ) begin
         if(reset==1'b1) begin
             data = 8'd0;
         end
