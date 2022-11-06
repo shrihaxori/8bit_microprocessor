@@ -73,6 +73,10 @@ module alu (clock, x, y, reset, operation, out, flags);
             flags[`CARRY_FLAG] = 1b'0;
             flags[`NEG_FLAG] = out[7];
         end
-        default: 
+        default: begin
+            out[15:0] = 15'd0;
+            flags[`CARRY_FLAG] = 1'b0;
+            flags[`NEG_FLAG] = 1'b0;
+        end
     endcase
 endmodule
