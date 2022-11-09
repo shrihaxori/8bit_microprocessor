@@ -12,7 +12,7 @@ module alu_latch(
 );
     reg[15:0] value;
 
-    always @(posedge clk ) begin
+    always @(posedge clock ) begin
         if(reset==1'b1) begin
             value <= 16b'0;
         end
