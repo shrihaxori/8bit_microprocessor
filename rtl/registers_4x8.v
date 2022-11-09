@@ -10,7 +10,7 @@ module 8bit_register (clock, load, enable, in, out) (
     output [7:0] alu_output;     //output directly from the registers to the alu
 );
     wire [7:0] value;
-    reg [7:0] register_data[3:0];
+    reg [7:0] register_data[1:0];   //4x8 array representing 4x 8bit registers
     integer i;
 
     always @(posedge clock ) begin

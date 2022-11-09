@@ -79,4 +79,7 @@ module alu (clock, x, y, reset, operation, out, flags);
             flags[`NEG_FLAG] = 1'b0;
         end
     endcase
+
+    // calculations have been done, now we have to send it to the databus, whenever required
+    // ---> alu latch
 endmodule
