@@ -1,7 +1,6 @@
-module 8bit_register (clock, load, enable, in, out) (
-    input [7:0] in_databus;         // input from the databus
-    output [7:0] out_databus;       //output to the databus
-    input clock;
+module 8bit_register (
+    inout [7:0] databus;         // i/o from the databus
+    input clock; input reset;     //active high
     input load;   // active high, if load is set take input from databus to register
     input enable;   //active high, if enable is set give output from register to databus
     input [1:0] in_regselect;   // to select the register to which data is written to
@@ -21,11 +20,11 @@ module 8bit_register (clock, load, enable, in, out) (
         end
 
         if(load==1'b1) begin        // if load is high take in input from the data bus to the designated register
-            register_data[in_regselect] <= in_databus;
+            register_data[in_regselect] <= databus;
         end
     end
 
     assign value = register_data[out_regselect];    
-    assign out_databus = enable ? value: 8h'zz;     // if enable is high take out data from the selected register into the databus
+    assign databus = enable ? value: 8h'zz;     // if enable is high take out data from the selected register into the databus
     assign alu_output = register_data[alu_regselect];   
 endmodule

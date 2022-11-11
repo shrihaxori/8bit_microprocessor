@@ -1,6 +1,4 @@
 module alu_latch(
-    
-) (
     input clock;
     input reset;        //active high
     input [15:0] alu_result;    // result from alu
