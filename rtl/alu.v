@@ -1,11 +1,11 @@
 `include "opcodes.v"
 
-module alu (clock, x, y, reset, operation, out, flags);
-    input clock;
+module alu (clock, reset, x, y, operation, out, flags);
+    input clock, reset;
     input [7:0] x;      // 8 bit x
     input [7:0] y;      // 8 bit y
     input [3:0] operation;      // 16 possible operations
-    output [7:0] out;       // 16 bit output, can be made 8 bit
+    output [15:0] out;       // 16 bit output, can be made 8 bit
     output [3:0] flags; //carry, zero and neg flags
 
     always @(*) begin
@@ -14,22 +14,22 @@ module alu (clock, x, y, reset, operation, out, flags);
 
     case (operation)
         `ALU_SUM: begin
-            out[7:0] = x+y;
+            out[8:0] = x+y;
             flags[`CARRY_FLAG] = out[8];        //carry
             flags[`NEG_FLAG] = out[7];
         end
         `ALU_SMI: begin
-            out[7:0] = x+y;
+            out[8:0] = x+y;
             flags[`CARRY_FLAG] = out[8];        //carry
             flags[`NEG_FLAG] = out[7];
         end
         `ALU_SB: begin
-            out[7:0] = x-y;
+            out[8:0] = x-y;
             flags[`CARRY_FLAG] = out[8];    //borrow
             flags[`NEG_FLAG] = out[7];
         end
         `ALU_SBI: begin
-            out[7:0] = x-y;
+            out[8:0] = x-y;
             flags[`CARRY_FLAG] = out[8];    //borrow
             flags[`NEG_FLAG] = out[7];
         end

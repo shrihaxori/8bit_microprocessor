@@ -1,11 +1,11 @@
 module 8bit_register (
-    inout [7:0] databus;         // i/o from the databus
     input clock; input reset;     //active high
     input load;   // active high, if load is set take input from databus to register
     input enable;   //active high, if enable is set give output from register to databus
     input [1:0] in_regselect;   // to select the register to which data is written to
     input [1:0] out_regselect;  // to select the regiswter ehose value goes into the databus
     input [1:0] alu_regselect;  // register whose value will be taken to alu
+    inout [7:0] databus;         // i/o from the databus
     output [7:0] alu_output;     //output directly from the registers to the alu
 );
     wire [7:0] value;
