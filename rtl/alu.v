@@ -1,7 +1,7 @@
 `include "opcodes.v"
 
-module alu (clock, x, y, reset, operation, out, flags);
-    input clock;
+module alu (clock, reset, x, y, operation, out, flags);
+    input clock, reset;
     input [7:0] x;      // 8 bit x
     input [7:0] y;      // 8 bit y
     input [3:0] operation;      // 16 possible operations
@@ -79,4 +79,7 @@ module alu (clock, x, y, reset, operation, out, flags);
             flags[`NEG_FLAG] = 1'b0;
         end
     endcase
+
+    // calculations have been done, now we have to send it to the databus, whenever required
+    // ---> alu latch
 endmodule
